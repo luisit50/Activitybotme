@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Tracker Discord Bot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Activity Tracker Bot</h1>
+    <nav>
+        <a href="#features">Features</a>
+        <a href="#admin">Admin</a>
+        <a href="#paytabs">Pay Tabs</a>
+        <a href="#commands">Commands</a>
+        <a href="#setup">Setup Guide</a>
+        <a href="#support">Support</a>
+    </nav>
+</header>
+
+<section id="hero">
+    <h2>🧠 Clean & Modern Bot Website</h2>
+    <p>Your all‑in‑one automation companion for Discord server management.</p>
+    <a class="button" href="https://discord.com/oauth2/authorize?client_id=1351892969615130737&permissions=8&integration_type=0&scope=bot">🚀 Invite Activity Tracker</a>
+</section>
+
+<section id="features">
+    <h2>📌 Key Features</h2>
+    <ul>
+        <li>Automates tedious tasks like manual paycheck calculations</li>
+        <li>Archives and resets hours with scheduled automation</li>
+        <li>Tracks inactivity strikes, feedback, and LOA status</li>
+        <li>Displays current configuration and upcoming archive/reset timeframes</li>
+        <li>Two detailed checklists:
+            <ul>
+                <li>Individual paychecks with user amounts and dates</li>
+                <li>Overall payroll spending summary</li>
+            </ul>
+        </li>
+        <li>Live configuration updates — customize on the spot</li>
+        <li>Fast, easy installation with minimal setup</li>
+        <li>User‑friendly web interface for admins and staff</li>
+    </ul>
+</section>
+
+<section id="branding">
+    <h2>🖼️ Branding Elements</h2>
+    <ul>
+        <li>Bot logo prominently displayed</li>
+        <li>Invite button for quick access</li>
+        <li>Clean layout with Discord‑inspired design</li>
+    </ul>
+</section>
+
+<section id="navigation">
+    <h2>🧭 Navigation Plan</h2>
+    <ul>
+        <li><strong>Home</strong> — Overview, invite button, branding</li>
+        <li><strong>Commands</strong> — Organized list of bot commands</li>
+        <li><strong>Support</strong> — FAQ, ticket link, contact info, support server</li>
+        <li><strong>Changelogs</strong> — Auto‑formatted updates</li>
+        <li><strong>Dashboard (optional)</strong> — Discord login, settings, premium</li>
+    </ul>
+</section>
+
+<section id="admin">
+    <h2>🛠️ Admin Tab — Website Features</h2>
+    <ul>
+        <li><strong>Rank Structure</strong> — Manage your server’s rank hierarchy</li>
+        <li><strong>Allowed Roles</strong> — Choose which non‑admin roles can access the site</li>
+        <li><strong>Minimum Payroll Rank</strong> — Define the lowest rank allowed to use pay buttons</li>
+        <li><strong>Centralized Management</strong> — All settings configured directly from the Admin tab</li>
+    </ul>
+</section>
+
+<section id="checklist">
+    <h2>📋 Optional Setup Checklist</h2>
+    <ul>
+        <li>Create or update your rank structure</li>
+        <li>Assign allowed roles (non‑admin only)</li>
+        <li>Set minimum payroll rank</li>
+        <li>Verify website access permissions</li>
+        <li>Test button functions with a non‑admin role</li>
+    </ul>
+</section>
+
+<section id="paytabs">
+    <h2>💵 Pay Tabs — Website Overview</h2>
+    <ul>
+        <li><strong>Total Payroll</strong> — Shows total amount paid server‑wide this period</li>
+        <li><strong>Paid & Bonuses</strong> — Displays user‑specific payouts and bonuses</li>
+        <li><strong>Update Payrate</strong> — Adjust pay rates and hourly caps for users or roles</li>
+    </ul>
+</section>
+
+<section id="commands">
+    <h2>📌 Bot Commands Overview</h2>
+
+    <div class="command">
+        <h3>/inactivitystrike</h3>
+        <p>Adds inactivity strikes to users who didn’t meet minimum hours. LOA role is exempt.</p>
+        <p><strong>Usage:</strong> /inactivitystrike</p>
+        <p><strong>Permissions:</strong> Admin only</p>
+        <p><strong>Note:</strong> Create a role named <strong>LOA</strong> to enable exemptions.</p>
+    </div>
+
+    <div class="command">
+        <h3>/setpayrollschedule</h3>
+        <p>Sets a schedule to archive and reset hours.</p>
+        <p><strong>Usage:</strong> /setpayrollschedule [date/time]</p>
+        <p><strong>Permissions:</strong> Admin only</p>
+        <p><strong>Note:</strong> Website shows countdown to next reset.</p>
+    </div>
+
+    <div class="command">
+        <h3>/setupchannels</h3>
+        <p>Creates all required channels and buttons.</p>
+        <p><strong>Usage:</strong> /setupchannels</p>
+        <p><strong>Permissions:</strong> Admin + Manage Channels</p>
+    </div>
+
+    <div class="command">
+        <h3>/totalpayrollpaid</h3>
+        <p>Displays total payroll paid (currently broken).</p>
+        <p><strong>Usage:</strong> /totalpayrollpaid</p>
+        <p><strong>Permissions:</strong> Admin only</p>
+    </div>
+</section>
+
+<section id="setup">
+    <h2>🧩 Setup Guide — Getting Your Server Ready</h2>
+    <ol>
+        <li>Run <strong>/setupchannels</strong> to create required channels and buttons.</li>
+        <li>Access the website from the Activity‑Panel channel and configure:
+            <ul>
+                <li>Rank Structure</li>
+                <li>Allowed Roles</li>
+                <li>Minimum Payroll Rank</li>
+            </ul>
+        </li>
+        <li>Set pay rates and caps (default cap: 10 hours).</li>
+        <li>Create a role named <strong>LOA</strong> for inactivity exemptions.</li>
+        <li>Optional: Open a ticket for auto archive/reset setup.</li>
+    </ol>
+</section>
+
+<section id="support">
+    <h2>💬 Support</h2>
+    <p>Need help? Join the support Discord server.</p>
+    <a class="button" href="https://discord.gg/3xcufqxp">Join Support Discord</a>
+</section>
+
+<footer>
+    <p>© 2025 Activity Bot — Clean, scalable, and stylish automation.</p>
+</footer>
+
+</body>
+</html>
