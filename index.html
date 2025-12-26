@@ -41,12 +41,7 @@
         <li>Archives and resets hours with scheduled automation</li>
         <li>Tracks inactivity strikes, feedback, and LOA status</li>
         <li>Displays current configuration and upcoming archive/reset timeframes</li>
-        <li>Two detailed checklists:
-            <ul>
-                <li>Individual paychecks with user amounts and dates</li>
-                <li>Overall payroll spending summary</li>
-            </ul>
-        </li>
+        <li>Detailed payroll tracking for users and server-wide totals</li>
         <li>Live configuration updates — customize on the spot</li>
         <li>Fast, easy installation with minimal setup</li>
         <li>User‑friendly web interface for admins and staff</li>
@@ -54,22 +49,24 @@
 </section>
 
 <section id="branding">
-    <h2>🖼️ Branding Elements</h2>
+    <h2>🖼️ Visual Identity & Experience</h2>
     <ul>
-        <li>Bot logo prominently displayed</li>
-        <li>Invite button for quick access</li>
-        <li>Clean layout with Discord‑inspired design</li>
+        <li><strong>Modern Discord-inspired look:</strong> Sleek, dark theme with vibrant accent colors for a familiar and professional feel.</li>
+        <li><strong>Consistent iconography:</strong> Custom bot logo and intuitive icons throughout the site.</li>
+        <li><strong>Instant access:</strong> Invite button and support links always visible for quick onboarding.</li>
+        <li><strong>Responsive design:</strong> Optimized for desktop and mobile, ensuring a seamless experience everywhere.</li>
     </ul>
 </section>
 
 <section id="navigation">
-    <h2>🧭 Navigation Plan</h2>
+    <h2>🧭 Website Navigation</h2>
     <ul>
-        <li><strong>Home</strong> — Overview, invite button, branding</li>
-        <li><strong>Commands</strong> — Organized list of bot commands</li>
-        <li><strong>Support</strong> — FAQ, ticket link, contact info, support server</li>
-        <li><strong>Changelogs</strong> — Auto‑formatted updates</li>
-        <li><strong>Dashboard (optional)</strong> — Discord login, settings, premium</li>
+        <li><strong>Features</strong> — See what the bot can do for your server.</li>
+        <li><strong>Admin</strong> — Configure rank structure, allowed roles, and payroll settings.</li>
+        <li><strong>Pay Tabs</strong> — View and manage payroll, pay rates, and bonuses.</li>
+        <li><strong>Commands</strong> — Full list and explanation of all bot commands.</li>
+        <li><strong>Setup Guide</strong> — Step-by-step instructions to get your server ready.</li>
+        <li><strong>Support</strong> — Get help, join the support server, or contact the team.</li>
     </ul>
 </section>
 
@@ -77,7 +74,7 @@
     <h2>🛠️ Admin Tab — Website Features</h2>
     <ul>
         <li><strong>Rank Structure</strong> — Manage your server’s rank hierarchy</li>
-        <li><strong>Allowed Roles</strong> — Choose which non‑admin roles can access the site</li>
+        <li><strong>Allowed Roles</strong> — Choose which non‑admin roles can access the website</li>
         <li><strong>Minimum Payroll Rank</strong> — Define the lowest rank allowed to use pay buttons</li>
         <li><strong>Centralized Management</strong> — All settings configured directly from the Admin tab</li>
     </ul>
@@ -110,8 +107,8 @@
         <h3>/inactivitystrike</h3>
         <p>Adds inactivity strikes to users who didn’t meet minimum hours. LOA role is exempt.</p>
         <p><strong>Usage:</strong> /inactivitystrike</p>
-        <p><strong>Permissions:</strong> Admin only</p>
-        <p><strong>Note:</strong> Create a role named <strong>LOA</strong> to enable exemptions.</p>
+        <p><strong>Permissions:</strong> Allowed Roles</p>
+        <p><strong>Note:</strong> Create a role named <strong>LOA</strong> in order to this command to work and  to enable requirement exemptions.</p>
     </div>
 
     <div class="command">
@@ -119,7 +116,7 @@
         <p>Sets a schedule to archive and reset hours.</p>
         <p><strong>Usage:</strong> /setpayrollschedule [date/time]</p>
         <p><strong>Permissions:</strong> Admin only</p>
-        <p><strong>Note:</strong> Website shows countdown to next reset.</p>
+        <p><strong>Note:</strong> Website shows countdown to next reset. Available on the Top left of the dashboard.</p>
     </div>
 
     <div class="command">
@@ -133,24 +130,73 @@
         <h3>/totalpayrollpaid</h3>
         <p>Displays total payroll paid (currently broken).</p>
         <p><strong>Usage:</strong> /totalpayrollpaid</p>
+        <p><strong>Permissions:</strong> Minimum Payroll Rank</p>
+    </div>
+
+    <div class="command">
+        <h3>/addclockinserver</h3>
+        <p>Links your server for automatic hour archiving and payroll resets. Required for auto reset features.</p>
+        <p><strong>Usage:</strong> /addclockinserver [Server ID] [Codeword] [Username] [Password]</p>
         <p><strong>Permissions:</strong> Admin only</p>
+        <p><strong>Note:</strong> Using the incorrect codeword will prevent automatic resets. Bot will notify if you are successfully connected and current codeword.</p>
     </div>
 </section>
 
 <section id="setup">
     <h2>🧩 Setup Guide — Getting Your Server Ready</h2>
     <ol>
-        <li>Run <strong>/setupchannels</strong> to create required channels and buttons.</li>
-        <li>Access the website from the Activity‑Panel channel and configure:
+        <li>
+            <strong>Run <code>/setupchannels</code></strong><br>
+            This command automatically creates all required channels and buttons for the bot to function.
+        </li>
+        <li>
+            <strong>Access the Website</strong><br>
+            Open the link posted in the Activity‑Panel channel.<br>
+            Navigate to the <strong>Admin</strong> tab and configure:
             <ul>
                 <li>Rank Structure</li>
                 <li>Allowed Roles</li>
                 <li>Minimum Payroll Rank</li>
             </ul>
         </li>
-        <li>Set pay rates and caps (default cap: 10 hours).</li>
-        <li>Create a role named <strong>LOA</strong> for inactivity exemptions.</li>
-        <li>Optional: Open a ticket for auto archive/reset setup.</li>
+        <li>
+            <strong>Set Pay Rates</strong><br>
+            Go to the <strong>Pay Rates</strong> tab on the website.<br>
+            Assign an hourly pay amount for each role.<br>
+            Set a pay cap (default is 10 hours).
+        </li>
+        <li>
+            <strong>Create the LOA Role</strong><br>
+            Add a role named <strong>LOA</strong> in your server.<br>
+            This role is required for the <code>/inactivitystrike</code> command to properly exempt users.
+        </li>
+        <li>
+            <strong>Auto Archive / Reset (Optional)</strong><br>
+            If you want the bot to automatically archive and reset hours:
+            <ol type="A">
+                <li>
+                    <strong>Use <code>/addclockinserver</code></strong><br>
+                    The bot will ask for:
+                    <ul>
+                        <li>Server ID</li>
+                        <li>Codeword</li>
+                        <li>Username</li>
+                        <li>Password</li>
+                    </ul>
+                    <span style="color: #e67e22; font-size: 0.95em;">⚠️ Using the incorrect codeword will prevent automatic resets. The username and password are set through the clockin bot using /register apiuser</span>
+                </li>
+                <li>
+                    <strong>Use <code>/setpayrollschedule</code></strong><br>
+                    You will be asked to select:
+                    <ul>
+                        <li>Period (daily, weekly, biweekly, monthly)</li>
+                        <li>Time</li>
+                        <li>Day (required for weekly, biweekly, and monthly)</li>
+                    </ul>
+                    <span style="color: #e67e22; font-size: 0.95em;">⚠️ Not selecting a day for these periods will cause the bot not to reset automatically.</span>
+                </li>
+            </ol>
+        </li>
     </ol>
 </section>
 
@@ -161,7 +207,7 @@
 </section>
 
 <footer>
-    <p>© 2025 Activity Bot — Clean, scalable, and stylish automation.</p>
+    <p>© 2025 Activity Bot — Effortless Discord automation for your community.</p>
 </footer>
 
 </body>
