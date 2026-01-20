@@ -11,8 +11,275 @@
     <meta property="og:url" content="https://activitybot.me">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://activitybot.me/assets/logo.png">
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="assets/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #0070f3;
+            --dark: #0a0e27;
+            --darker: #050814;
+            --accent: #7c3aed;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #f0f4ff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+
+        nav a {
+            color: rgba(240, 244, 255, 0.8);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        nav a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(10, 14, 39, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        #hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        #hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #hero p {
+            font-size: 1.25rem;
+            color: rgba(240, 244, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+
+        ul li, ol li {
+            margin-bottom: 0.75rem;
+            color: rgba(240, 244, 255, 0.9);
+        }
+
+        ul ul {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--primary);
+        }
+
+        code {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .command {
+            background: rgba(124, 58, 237, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .command h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .command p {
+            margin: 0.5rem 0;
+        }
+
+        .note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .warning {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            color: #fca5a5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 14, 39, 0.95);
+            margin-top: 3rem;
+            border-top: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                margin: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            #hero h2 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,11 +295,10 @@
 <body>
 
 <header>
-    <h1>Activity Tracker Bot</h1>
+    <h1>⚡ ActivityBot</h1>
     <nav>
         <a href="#features">Features</a>
-        <a href="#admin">Admin</a>
-        <a href="#paytabs">Pay Tabs</a>
+        <a href="#dashboard">Dashboard</a>
         <a href="#commands">Commands</a>
         <a href="#setup">Setup Guide</a>
         <a href="#support">Support</a>
@@ -40,185 +306,334 @@
 </header>
 
 <section id="hero">
-    <h2>🧠 Clean & Modern Bot Website</h2>
-    <p>Your all‑in‑one automation companion for Discord server management.</p>
-    <a class="button" href="https://discord.com/oauth2/authorize?client_id=1351892969615130737&permissions=8&integration_type=0&scope=bot">🚀 Invite Activity Tracker</a>
+    <h2>🚀 Discord Automation Made Simple</h2>
+    <p>Your all-in-one automation companion for Discord server management, payroll tracking, and training oversight.</p>
+    <a class="button" href="https://discord.com/oauth2/authorize?client_id=1462951632085188741&permissions=8&integration_type=0&scope=bot">Invite ActivityBot</a>
 </section>
 
 <section id="features">
-    <h2>📌 Key Features</h2>
-    <ul>
-        <li>Automates tedious tasks like manual paycheck calculations</li>
-        <li>Archives and resets hours with scheduled automation</li>
-        <li>Tracks inactivity strikes, feedback, and LOA status</li>
-        <li>Displays current configuration and upcoming archive/reset timeframes</li>
-        <li>Detailed payroll tracking for users and server-wide totals</li>
-        <li>Live configuration updates — customize on the spot</li>
-        <li>Fast, easy installation with minimal setup</li>
-        <li>User‑friendly web interface for admins and staff</li>
-    </ul>
+    <h2>✨ Key Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>💰 Automated Payroll</h3>
+            <p>Automatic hour tracking, paycheck calculations, and scheduled payroll resets. Configure pay rates by rank with customizable hour caps.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📊 Activity Tracking</h3>
+            <p>Real-time monitoring of officer activity with automatic inactivity strike system. LOA exemptions included.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📋 Training Checklists</h3>
+            <p>Comprehensive FTO and Cadet training checklist management. Track training progress with organized sections.</p>
+        </div>
+        <div class="feature-card">
+            <h3>⚙️ Easy Configuration</h3>
+            <p>Web-based dashboard for admins to manage ranks, roles, permissions, and payroll settings without commands.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔔 Scheduled Automation</h3>
+            <p>Automatic hour archiving and payroll resets on daily, weekly, biweekly, or monthly schedules.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📈 Comprehensive Reports</h3>
+            <p>Detailed payroll history with individual payment tracking and server-wide totals.</p>
+        </div>
+    </div>
 </section>
 
-<section id="branding">
-    <h2>🖼️ Visual Identity & Experience</h2>
-    <ul>
-        <li><strong>Modern Discord-inspired look:</strong> Sleek, dark theme with vibrant accent colors for a familiar and professional feel.</li>
-        <li><strong>Consistent iconography:</strong> Custom bot logo and intuitive icons throughout the site.</li>
-        <li><strong>Instant access:</strong> Invite button and support links always visible for quick onboarding.</li>
-        <li><strong>Responsive design:</strong> Optimized for desktop and mobile, ensuring a seamless experience everywhere.</li>
-    </ul>
-</section>
+<section id="dashboard">
+    <h2>🖥️ Web Dashboard</h2>
+    <p>ActivityBot includes a powerful web-based dashboard accessible at the top-right of any channel after running <code>/setupchannels</code>.</p>
 
-<section id="navigation">
-    <h2>🧭 Website Navigation</h2>
-    <ul>
-        <li><strong>Features</strong> — See what the bot can do for your server.</li>
-        <li><strong>Admin</strong> — Configure rank structure, allowed roles, and payroll settings.</li>
-        <li><strong>Pay Tabs</strong> — View and manage payroll, pay rates, and bonuses.</li>
-        <li><strong>Commands</strong> — Full list and explanation of all bot commands.</li>
-        <li><strong>Setup Guide</strong> — Step-by-step instructions to get your server ready.</li>
-        <li><strong>Support</strong> — Get help, join the support server, or contact the team.</li>
-    </ul>
-</section>
+    <h3>📱 Dashboard Tabs</h3>
 
-<section id="admin">
-    <h2>🛠️ Admin Tab — Website Features</h2>
-    <ul>
-        <li><strong>Rank Structure</strong> — Manage your server’s rank hierarchy</li>
-        <li><strong>Allowed Roles</strong> — Choose which non‑admin roles can access the website</li>
-        <li><strong>Minimum Payroll Rank</strong> — Define the lowest rank allowed to use pay buttons</li>
-        <li><strong>Centralized Management</strong> — All settings configured directly from the Admin tab</li>
-    </ul>
-</section>
+    <div class="feature-card">
+        <h3>🏠 Dashboard</h3>
+        <ul>
+            <li><strong>Real-time Statistics:</strong> Total members, strikes, active/inactive officers</li>
+            <li><strong>Countdown Timer:</strong> View time until next payroll reset (top-right header)</li>
+            <li><strong>Activity Table:</strong> View all officers with their activity hours, strikes, and status</li>
+            <li><strong>Search & Filter:</strong> Search by nickname/ID, filter by active/inactive/strikes</li>
+            <li><strong>Strike Management:</strong> View disciplinary and inactivity strikes with reasons</li>
+        </ul>
+    </div>
 
-<section id="checklist">
-    <h2>📋 Optional Setup Checklist</h2>
-    <ul>
-        <li>Create or update your rank structure</li>
-        <li>Assign allowed roles (non‑admin only)</li>
-        <li>Set minimum payroll rank</li>
-        <li>Verify website access permissions</li>
-        <li>Test button functions with a non‑admin role</li>
-    </ul>
-</section>
+    <div class="feature-card">
+        <h3>💵 Salary Settings</h3>
+        <ul>
+            <li><strong>Configure Pay Rates:</strong> Set hourly pay rate for each rank/role</li>
+            <li><strong>Hour Cap:</strong> Define maximum billable hours per payroll period</li>
+            <li><strong>Current Rates Table:</strong> View all configured pay rates at a glance</li>
+        </ul>
+    </div>
 
-<section id="paytabs">
-    <h2>💵 Pay Tabs — Website Overview</h2>
-    <ul>
-        <li><strong>Total Payroll</strong> — Shows total amount paid server‑wide this period</li>
-        <li><strong>Paid & Bonuses</strong> — Displays user‑specific payouts and bonuses</li>
-        <li><strong>Update Payrate</strong> — Adjust pay rates and hourly caps for users or roles</li>
-    </ul>
+    <div class="feature-card">
+        <h3>📊 Payroll History</h3>
+        <ul>
+            <li><strong>Payroll Periods:</strong> View historical payroll data by period</li>
+            <li><strong>Server Totals:</strong> See total amount paid server-wide per period</li>
+            <li><strong>Individual Payments:</strong> Track individual officer payments and bonuses</li>
+            <li><strong>Payment Details:</strong> Expandable view showing who was paid and how much</li>
+        </ul>
+    </div>
+
+    <div class="feature-card">
+        <h3>⚙️ Settings (Admin)</h3>
+        <ul>
+            <li><strong>Rank Structure:</strong> Define your server's rank hierarchy</li>
+            <li><strong>Allowed Roles:</strong> Control which roles can access the dashboard (non-admin)</li>
+            <li><strong>Minimum Payroll Rank:</strong> Set the minimum rank eligible for payroll processing</li>
+            <li><strong>Role Management:</strong> Add/remove roles with drag-and-drop ordering</li>
+        </ul>
+    </div>
+
+    <div class="feature-card">
+        <h3>📋 Training Checklist</h3>
+        <ul>
+            <li><strong>Cadet Checklist:</strong> Create and manage training requirements for cadets</li>
+            <li><strong>FTO Checklist:</strong> Define Field Training Officer evaluation criteria</li>
+            <li><strong>Organized Sections:</strong> Group related requirements into logical sections</li>
+            <li><strong>Edit & Delete:</strong> Modify checklist items with built-in editors</li>
+            <li><strong>Progress Tracking:</strong> View completion status through officer modals</li>
+        </ul>
+    </div>
 </section>
 
 <section id="commands">
-    <h2>📌 Bot Commands Overview</h2>
+    <h2>⌨️ Bot Commands</h2>
+
+    <div class="command">
+        <h3>/setupchannels</h3>
+        <p>Creates all required channels and interactive buttons for the bot.</p>
+        <p><strong>Usage:</strong> <code>/setupchannels</code></p>
+        <p><strong>Permissions:</strong> Administrator + Manage Channels</p>
+        <p><strong>Note:</strong> This is the first command you should run. It creates the Activity-Panel with the dashboard link.</p>
+    </div>
 
     <div class="command">
         <h3>/inactivitystrike</h3>
-        <p>Adds inactivity strikes to users who didn’t meet minimum hours. LOA role is exempt.</p>
-        <p><strong>Usage:</strong> /inactivitystrike</p>
-        <p><strong>Permissions:</strong> Allowed Roles</p>
-        <p><strong>Note:</strong> Create a role named <strong>LOA</strong> in order to this command to work and  to enable requirement exemptions.</p>
+        <p>Adds inactivity strikes to users who didn't meet minimum hours. Users with the LOA role are automatically exempt.</p>
+        <p><strong>Usage:</strong> <code>/inactivitystrike</code></p>
+        <p><strong>Permissions:</strong> Allowed Roles (configured in dashboard)</p>
+        <div class="note">
+            <strong>⚠️ Important:</strong> Create a role named <strong>LOA</strong> in your server for this command to work properly. Users with this role will be exempt from inactivity strikes.
+        </div>
     </div>
 
     <div class="command">
         <h3>/setpayrollschedule</h3>
-        <p>Sets a schedule to archive and reset hours.</p>
-        <p><strong>Usage:</strong> /setpayrollschedule [date/time]</p>
-        <p><strong>Permissions:</strong> Admin only</p>
-        <p><strong>Note:</strong> Website shows countdown to next reset. Available on the Top left of the dashboard.</p>
-    </div>
-
-    <div class="command">
-        <h3>/setupchannels</h3>
-        <p>Creates all required channels and buttons.</p>
-        <p><strong>Usage:</strong> /setupchannels</p>
-        <p><strong>Permissions:</strong> Admin + Manage Channels</p>
-    </div>
-
-    <div class="command">
-        <h3>/totalpayrollpaid</h3>
-        <p>Displays total payroll paid (currently broken).</p>
-        <p><strong>Usage:</strong> /totalpayrollpaid</p>
-        <p><strong>Permissions:</strong> Minimum Payroll Rank</p>
+        <p>Configures automatic hour archiving and payroll resets on a schedule.</p>
+        <p><strong>Usage:</strong> <code>/setpayrollschedule</code></p>
+        <p><strong>Options:</strong>
+            <ul>
+                <li><strong>Period:</strong> Daily, Weekly, Biweekly, or Monthly</li>
+                <li><strong>Time:</strong> When the reset should occur</li>
+                <li><strong>Day:</strong> Required for weekly/biweekly/monthly periods</li>
+            </ul>
+        </p>
+        <p><strong>Permissions:</strong> Administrator only</p>
+        <div class="warning">
+            <strong>⚠️ Warning:</strong> For weekly, biweekly, and monthly periods, you MUST select a day or automatic resets will not work.
+        </div>
+        <p><strong>Note:</strong> The countdown to next reset is visible in the dashboard header (top-right).</p>
     </div>
 
     <div class="command">
         <h3>/addclockinserver</h3>
-        <p>Links your server for automatic hour archiving and payroll resets. Required for auto reset features.</p>
-        <p><strong>Usage:</strong> /addclockinserver [Server ID] [Codeword] [Username] [Password]</p>
-        <p><strong>Permissions:</strong> Admin only</p>
-        <p><strong>Note:</strong> Using the incorrect codeword will prevent automatic resets. Bot will notify if you are successfully connected and current codeword.</p>
+        <p>Links your server to <a href="https://www.clockinbot.me/" target="_blank" style="color: var(--primary);">ClockInBot</a> for automatic hour archiving and payroll resets. Required for automatic reset functionality.</p>
+        <p><strong>Usage:</strong> <code>/addclockinserver [Server ID] [Codeword] [Username] [Password]</code></p>
+        <p><strong>Parameters:</strong>
+            <ul>
+                <li><strong>Server ID:</strong> Your ClockInBot server ID</li>
+                <li><strong>Codeword:</strong> Authentication codeword from ClockInBot</li>
+                <li><strong>Username:</strong> API username (created via <code>/register apiuser</code> on ClockInBot)</li>
+                <li><strong>Password:</strong> API password (created via <code>/register apiuser</code> on ClockInBot)</li>
+            </ul>
+        </p>
+        <p><strong>Permissions:</strong> Administrator only</p>
+        <p><strong>Prerequisites:</strong> Must have <a href="https://www.clockinbot.me/" target="_blank" style="color: var(--primary);">ClockInBot</a> installed and configured</p>
+        <div class="warning">
+            <strong>⚠️ Critical:</strong> Using an incorrect codeword will prevent automatic resets. The bot will notify you if the connection is successful and display the current codeword. Both this command AND <code>/setpayrollschedule</code> must be completed for automatic resets to work.
+        </div>
+    </div>
+
+    <div class="command">
+        <h3>/totalpayrollpaid</h3>
+        <p>Displays the total payroll paid for the current period.</p>
+        <p><strong>Usage:</strong> <code>/totalpayrollpaid</code></p>
+        <p><strong>Permissions:</strong> Minimum Payroll Rank (configured in dashboard)</p>
     </div>
 </section>
 
 <section id="setup">
-    <h2>🧩 Setup Guide — Getting Your Server Ready</h2>
+    <h2>🛠️ Complete Setup Guide</h2>
+    
+    <h3>Step 1: Initial Bot Setup</h3>
     <ol>
         <li>
-            <strong>Run <code>/setupchannels</code></strong><br>
-            This command automatically creates all required channels and buttons for the bot to function.
+            <strong>Invite the Bot</strong><br>
+            Use the invite link at the top of this page to add ActivityBot to your server.
         </li>
         <li>
-            <strong>Access the Website</strong><br>
-            Open the link posted in the Activity‑Panel channel.<br>
-            Navigate to the <strong>Admin</strong> tab and configure:
+            <strong>Run <code>/setupchannels</code></strong><br>
+            This command creates all necessary channels including:
             <ul>
-                <li>Rank Structure</li>
-                <li>Allowed Roles</li>
-                <li>Minimum Payroll Rank</li>
+                <li><strong>Activity-Panel</strong> — Contains the dashboard link and information</li>
+                <li>Other management channels with interactive buttons</li>
             </ul>
         </li>
+    </ol>
+
+    <h3>Step 2: Configure Server Settings</h3>
+    <ol>
         <li>
-            <strong>Set Pay Rates</strong><br>
-            Go to the <strong>Pay Rates</strong> tab on the website.<br>
-            Assign an hourly pay amount for each role.<br>
-            Set a pay cap (default is 10 hours).
+            <strong>Access the Dashboard</strong><br>
+            Click the dashboard link in the Activity-Panel channel.
         </li>
         <li>
-            <strong>Create the LOA Role</strong><br>
-            Add a role named <strong>LOA</strong> in your server.<br>
-            This role is required for the <code>/inactivitystrike</code> command to properly exempt users.
+            <strong>Navigate to Settings Tab</strong><br>
+            Configure the following:
+            <ul>
+                <li><strong>Rank Structure:</strong> Add roles in hierarchical order (highest to lowest)</li>
+                <li><strong>Allowed Roles:</strong> Select non-admin roles that should have dashboard access</li>
+                <li><strong>Minimum Payroll Rank:</strong> Set the minimum rank eligible for payroll</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Step 3: Configure Payroll</h3>
+    <ol>
+        <li>
+            <strong>Go to Salary Settings Tab</strong><br>
+            <ul>
+                <li>Select each role and set its hourly pay rate</li>
+                <li>Configure the payroll hour cap (default: 10 hours)</li>
+                <li>Verify all rates in the current pay rates table</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Step 4: Create LOA Role</h3>
+    <ol>
+        <li>
+            <strong>Create a Discord Role</strong><br>
+            In your server settings, create a role named exactly <strong>LOA</strong> (Leave of Absence).
         </li>
         <li>
-            <strong>Auto Archive / Reset (Optional)</strong><br>
-            If you want the bot to automatically archive and reset hours:
-            <ol type="A">
-                <li>
-                    <strong>Use <code>/addclockinserver</code></strong><br>
-                    The bot will ask for:
-                    <ul>
-                        <li>Server ID</li>
-                        <li>Codeword</li>
-                        <li>Username</li>
-                        <li>Password</li>
-                    </ul>
-                    <span style="color: #e67e22; font-size: 0.95em;">⚠️ Using the incorrect codeword will prevent automatic resets. The username and password are set through the clockin bot using /register apiuser</span>
-                </li>
-                <li>
-                    <strong>Use <code>/setpayrollschedule</code></strong><br>
-                    You will be asked to select:
-                    <ul>
-                        <li>Period (daily, weekly, biweekly, monthly)</li>
-                        <li>Time</li>
-                        <li>Day (required for weekly, biweekly, and monthly)</li>
-                    </ul>
-                    <span style="color: #e67e22; font-size: 0.95em;">⚠️ Not selecting a day for these periods will cause the bot not to reset automatically.</span>
-                </li>
+            <strong>Assign as Needed</strong><br>
+            Users with this role will be exempt from inactivity strikes when you run <code>/inactivitystrike</code>.
+        </li>
+    </ol>
+
+    <h3>Step 5: Optional - Training Checklists</h3>
+    <ol>
+        <li>
+            <strong>Navigate to Training Checklist Tab</strong><br>
+            <ul>
+                <li>Add cadet training requirements organized by sections</li>
+                <li>Add FTO evaluation criteria organized by sections</li>
+                <li>Edit or delete items as needed</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Step 6: Automatic Payroll Reset (Requires ClockInBot)</h3>
+    <div class="note">
+        <strong>Note:</strong> To enable automatic hour archiving and payroll resets on a schedule, you must integrate with <a href="https://www.clockinbot.me/" target="_blank" style="color: var(--primary);">ClockInBot</a>. This is the only way to enable automatic resets.
+    </div>
+    <div class="warning">
+        <strong>⚠️ Required:</strong> Both steps below MUST be completed for automatic resets to work.
+    </div>
+    <ol>
+        <li>
+            <strong>Step A: Link Clock-In System</strong><br>
+            <ol type="a">
+                <li>First, invite <a href="https://www.clockinbot.me/" target="_blank" style="color: var(--primary);">ClockInBot</a> to your server</li>
+                <li>Run <code>/register apiuser</code> on ClockInBot to create API credentials (username/password)</li>
+                <li>Run <code>/addclockinserver [Server ID] [Codeword] [Username] [Password]</code> on ActivityBot</li>
+                <li>Bot will confirm successful connection and display the current codeword</li>
+            </ol>
+        </li>
+        <li>
+            <strong>Step B: Set Payroll Schedule</strong><br>
+            <ol type="a">
+                <li>Run <code>/setpayrollschedule</code> on ActivityBot</li>
+                <li>Select period (daily/weekly/biweekly/monthly)</li>
+                <li>Select time</li>
+                <li><strong>Important:</strong> Select a day for weekly/biweekly/monthly periods</li>
             </ol>
         </li>
     </ol>
+    <p><strong>Important:</strong> Skipping either step will prevent automatic resets from functioning.</p>
+
+    <div class="warning">
+        <strong>⚠️ Important Reminders:</strong>
+        <ul>
+            <li>The LOA role must be created for <code>/inactivitystrike</code> to work</li>
+            <li>Days must be selected for weekly/biweekly/monthly schedules</li>
+            <li>Incorrect codewords will prevent automatic resets</li>
+            <li>The countdown timer shows time until next reset in the dashboard header</li>
+        </ul>
+    </div>
+</section>
+
+<section id="features-detail">
+    <h2>🎯 Feature Highlights</h2>
+
+    <h3>Dashboard Features</h3>
+    <ul>
+        <li><strong>Interactive Statistics:</strong> Click stat cards to filter officers (Total Members, Active, Inactive, With Strikes)</li>
+        <li><strong>Real-time Search:</strong> Instantly filter officers by nickname or user ID</li>
+        <li><strong>Strike Tracking:</strong> View both disciplinary strikes and inactivity strikes with reasons</li>
+        <li><strong>Visual Indicators:</strong> Color-coded badges for different strike types and statuses</li>
+        <li><strong>Countdown Timer:</strong> Always visible timer showing next payroll reset</li>
+    </ul>
+
+    <h3>Payroll Management</h3>
+    <ul>
+        <li><strong>Flexible Pay Rates:</strong> Set different rates for each rank/role</li>
+        <li><strong>Hour Caps:</strong> Prevent overpayment with configurable hour limits</li>
+        <li><strong>Automatic Archiving:</strong> Historical payroll data saved for every period</li>
+        <li><strong>Detailed History:</strong> View who was paid, when, and how much</li>
+        <li><strong>Bonus Tracking:</strong> Record and track bonus payments separately</li>
+    </ul>
+
+    <h3>Training System</h3>
+    <ul>
+        <li><strong>Dual Checklists:</strong> Separate checklists for Cadets and FTOs</li>
+        <li><strong>Organized Sections:</strong> Group related training items logically</li>
+        <li><strong>Easy Editing:</strong> Modify questions and sections with built-in modals</li>
+        <li><strong>Progress Tracking:</strong> View training completion through officer profiles</li>
+    </ul>
+
+    <h3>Security & Permissions</h3>
+    <ul>
+        <li><strong>Role-Based Access:</strong> Control who can access which features</li>
+        <li><strong>Admin Controls:</strong> Sensitive settings require administrator permissions</li>
+        <li><strong>Allowed Roles:</strong> Grant dashboard access to trusted non-admin roles</li>
+        <li><strong>Minimum Rank Gates:</strong> Restrict payroll processing to specific ranks</li>
+    </ul>
 </section>
 
 <section id="support">
-    <h2>💬 Support</h2>
-    <p>Need help? Join the support Discord server.</p>
-    <a class="button" href="https://discord.gg/6TnSX5AnnW">Join Support Discord</a>
+    <h2>💬 Support & Community</h2>
+    <p>Need help getting started? Have questions about features? Found a bug?</p>
+    <p>Join our Discord support server for:</p>
+    <ul>
+        <li>✅ Quick setup assistance</li>
+        <li>💡 Feature requests and suggestions</li>
+        <li>🐛 Bug reports and troubleshooting</li>
+        <li>📢 Bot update announcements</li>
+        <li>🤝 Community discussion</li>
+    </ul>
+    <div style="text-align: center; margin-top: 2rem;">
+        <a class="button" href="https://discord.gg/6TnSX5AnnW">Join Support Discord</a>
+    </div>
 </section>
 
 <footer>
-    <p>© 2025 Activity Bot — Effortless Discord automation for your community.</p>
+    <p>© 2025 ActivityBot — Effortless Discord automation for your community.</p>
+    <p style="margin-top: 1rem; opacity: 0.7;">Made with ⚡ for Discord server management</p>
 </footer>
 
 </body>
